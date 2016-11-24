@@ -3,5 +3,8 @@
 *.classpath
 *.jsdtscope
 *.component
-target\*
+*/target/*
+*/tomcat/*
 */.settings/*
+*.war
+*.class

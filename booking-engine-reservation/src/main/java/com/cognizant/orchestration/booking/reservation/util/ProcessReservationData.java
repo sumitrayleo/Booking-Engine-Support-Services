@@ -51,12 +51,8 @@ public static void main(String[] args) {
                     final String memberId = String.valueOf(memberIdNumValue.intValue());
                     final Double latValue = latCell.getNumericCellValue();
                     final Double longValue = longCell.getNumericCellValue();
-                    if (memberIdReq.equals(memberId) && latValue.equals(latitude) && longValue.equals(longitude)) {
-                        final Double reservationIdValue = reservationIdCell.getNumericCellValue();
-                        reservationIds.add(String.valueOf(reservationIdValue.intValue()));
-
-                    }
-
+					final Double reservationIdValue = reservationIdCell.getNumericCellValue();
+                        reservationIds.add(String.valueOf(reservationIdValue.intValue()));                    
                 }
 
             }

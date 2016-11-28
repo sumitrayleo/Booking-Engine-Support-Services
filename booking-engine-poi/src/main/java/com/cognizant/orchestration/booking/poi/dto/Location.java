@@ -23,8 +23,8 @@ public class Location {
     @Override
     public boolean equals(Object obj) {
         if(obj != null && obj instanceof Location) {
-            Location loc = (Location)obj;
-            return latitude.equals(loc.latitude) && longitude.equals(loc.longitude);
+            /*Location loc = (Location)obj;
+            return latitude.equals(loc.latitude) && longitude.equals(loc.longitude);*/return true;
         }
         return false;
     }

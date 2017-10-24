@@ -2,6 +2,7 @@ package com.cognizant.orchestration.booking.poi.web.handler;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cognizant.orchestration.booking.poi.exception.BeconAdditionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -102,6 +103,20 @@ public class GlobalExceptionHandler {
         response.getErrors().add(new OrchestrationError(ReturnCodeEnum.INVALID_PARAMETERS.toString(), exception.getMessage()));
 
         return new ResponseEntity<ErrorResponse>(response, headers, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handle(final BeconAdditionException exception, HttpServletRequest httpServletRequest) {
+        HttpHeaders headers = new HttpHeaders();
+
+        LOGGER.error("BeconAdditionException - " + appendClientInformation(httpServletRequest));
+
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        ErrorResponse response = new ErrorResponse();
+        response.getErrors().add(new OrchestrationError(ReturnCodeEnum.BECON_NOT_ADDED.toString(), exception.getMessage()));
+
+        return new ResponseEntity<ErrorResponse>(response, headers, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler

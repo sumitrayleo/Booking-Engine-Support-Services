@@ -20,10 +20,17 @@ public class PointOfInterestConstant {
     public final static String LOYALTY_CODE = "loyaltyCode";
     public final static String RESOURCE_DESCRIPTION = "resourceDescription";
     public final static String CATEGORY = "category";
+    public static final String UUID = "uuid";
+    public static final String REGION = "region";
+    public static final String ASSET_ID = "assetId";
+    public static final String MESSAGE = "message";
+    public static final String LOCATION_DETAILS = "locationDetails";
 
     public static final String POI_RESOURCE = "/poidata/poi-data.xlsx";
     public static final String POI_DRIVE_RESOURCE = "/poidata/poi-drive-data.xlsx";
     public static final String POI_PROMOTION_OFFER_RESOURCE = "/poidata/poi-promotion-offer-data.xlsx";
     public static final String POI_PROMOTION_RULE_RESOURCE = "/poidata/poi-promotion-rule-data.xlsx";
+
+    public static final String BECON_RESOURCE = "/poidata/becon-data.xlsx";
 
 }

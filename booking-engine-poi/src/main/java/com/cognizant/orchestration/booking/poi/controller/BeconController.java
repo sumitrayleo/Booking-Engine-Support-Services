@@ -1,6 +1,7 @@
 package com.cognizant.orchestration.booking.poi.controller;
 
 import com.cognizant.orchestration.booking.poi.dto.DeviceInformation;
+import com.cognizant.orchestration.booking.poi.dto.GetBeconRequest;
 import com.cognizant.orchestration.booking.poi.dto.RegistrationInformation;
 import com.cognizant.orchestration.booking.poi.service.BeconService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,10 @@ public class BeconController {
     @RequestMapping(value = "/api/info/addBecons", method = RequestMethod.POST, produces = "application/json")
     public RegistrationInformation addBecons(@RequestBody final DeviceInformation deviceInformation) {
         return beconService.addBecons(deviceInformation);
+    }
+
+    @RequestMapping(value = "/api/info/isBeconValid", method = RequestMethod.POST)
+    public RegistrationInformation isBeconValid(@RequestBody final GetBeconRequest getBeconRequest) {
+        return beconService.isBeconPresent(getBeconRequest);
     }
 }

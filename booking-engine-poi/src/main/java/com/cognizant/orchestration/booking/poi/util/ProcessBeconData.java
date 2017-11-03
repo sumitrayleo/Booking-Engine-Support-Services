@@ -2,10 +2,12 @@ package com.cognizant.orchestration.booking.poi.util;
 
 import com.cognizant.orchestration.booking.poi.dto.AssetInfo;
 import com.cognizant.orchestration.booking.poi.dto.DeviceInformation;
+import com.cognizant.orchestration.booking.poi.dto.GetBeconRequest;
 import com.cognizant.orchestration.booking.poi.dto.Location;
 import com.cognizant.orchestration.booking.poi.dto.PointOfInterest;
 import com.cognizant.orchestration.booking.poi.exception.BeconAdditionException;
 import com.cognizant.orchestration.booking.poi.exception.PoiApplException;
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -62,8 +64,8 @@ public class ProcessBeconData {
 
             inputStream.close();
 
-            FileOutputStream out = new FileOutputStream(new File("booking-engine-poi\\src\\main\\resources\\poidata\\becon-data"
-                + ".xlsx"));
+            FileOutputStream out =
+                new FileOutputStream(new File("booking-engine-poi\\src\\main\\resources\\poidata\\becon-data" + ".xlsx"));
             workBook.write(out);
             out.close();
 
@@ -72,6 +74,34 @@ public class ProcessBeconData {
             throw new BeconAdditionException("Becon not added", e);
         }
         return true;
+    }
+
+    public boolean findBecon(final GetBeconRequest getBeconRequest) {
+        boolean isBeaconPresent = false;
+        final XSSFSheet workBookSheet;
+        try {
+            workBookSheet = getWorkBookSheet(PointOfInterestConstant.BECON_RESOURCE);
+
+            final Iterator<Row> iterator = workBookSheet.iterator();
+            while (iterator.hasNext()) {
+                final Row row = iterator.next();
+                final String uuid = row.getCell(0) == null ? null : row.getCell(0).getStringCellValue();
+                final String region = row.getCell(1) == null ? null : row.getCell(1).getStringCellValue();
+                final String assetId = row.getCell(2) == null ? null : row.getCell(2).getStringCellValue();
+                if (StringUtils.isNotBlank(uuid) && StringUtils.isNotBlank(region) && StringUtils.isNotBlank(assetId) && StringUtils
+                    .equalsIgnoreCase(getBeconRequest.getUuid(), uuid) && StringUtils
+                    .equalsIgnoreCase(getBeconRequest.getRegion(), region) && StringUtils
+                    .equalsIgnoreCase(getBeconRequest.getAssetId(), assetId)) {
+                    isBeaconPresent = true;
+                    break;
+                }
+            }
+            return isBeaconPresent;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BeconAdditionException("Becon search failed!", e);
+        }
+
     }
 
     private static XSSFSheet getWorkBookSheet(final String resourcePath) throws IOException, FileNotFoundException {

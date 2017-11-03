@@ -5,6 +5,7 @@
 	"order": [
 		"142d609f-547e-9869-5165-0e57ed25cb15",
 		"2c3e930f-2f7f-04b3-6c57-f6f2587d205d",
+		"062be751-1f51-5002-a9ea-6d3117766610",
 		"79b1e9f4-9b9d-3544-f2f1-bbb57546841e"
 	],
 	"folders": [],
@@ -13,6 +14,35 @@
 	"owner": 0,
 	"public": false,
 	"requests": [
+		{
+			"id": "062be751-1f51-5002-a9ea-6d3117766610",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8082/booking-engine-poi/api/info/isBeconValid",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509697765726,
+			"name": "Validate Beacon",
+			"description": "Get points of interest",
+			"collectionId": "c1ba943d-614f-c69d-76d8-277479c492fe",
+			"responses": [],
+			"rawModeData": "{\r\n  \"assetId\":\"1234\",\r\n  \"region\":\"9860\",\r\n  \"uuid\":\"123\"\r\n}"
+		},
 		{
 			"id": "142d609f-547e-9869-5165-0e57ed25cb15",
 			"headers": "Content-Type: application/json\n",

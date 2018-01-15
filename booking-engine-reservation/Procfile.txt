@@ -1,1 +1,1 @@
-web: war:deploy target/booking-engine-reservation.war
+web: java -jar target/booking-engine-reservation.war

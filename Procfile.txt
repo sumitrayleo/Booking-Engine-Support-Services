@@ -1,0 +1,1 @@
+web: java -jar booking-engine-reservation/target/booking-engine-reservation.war booking-engine-poi/target/booking-engine-poi.war

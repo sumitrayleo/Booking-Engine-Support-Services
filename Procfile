@@ -1,0 +1,1 @@
+java -jar target/dependency/webapp-runner.jar --port 8082 booking-engine-poi/target/*.war booking-engine-reservation/target/*war
